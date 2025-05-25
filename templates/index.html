@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- <script src="https://kit.fontawesome.com/f0071ab691.js" crossorigin="anonymous"></script> -->
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="container">
+
+        <header id="header">
+        
+            <h3>Proyecto 01</h3>
+            <h3 id="name">Lossless DC</h3>
+            <h3>Creditos</h3>
+        
+        </header>
+        
+        <nav id="nav">
+        
+            <ul>
+                <li>Principal</li>
+                <li>Funcionamiento</li>
+                <li>Ayuda</li>
+            </ul>
+        
+        </nav>
+
+        <main id="main">
+
+            <section id="section_compression" class="drop-area">
+                <div id="input_compression" class="input">
+                    <img class="icon" src="../static/assets/icons/icon_file_txt.svg" alt="">
+                    <h4>Archivo de texto</h4>
+                </div>
+                <input type="file" name="file" id="file-txt" accept=".txt" style="display:none;">
+            </section>
+
+            <section id="section_decompression">
+                <div id="input_decompression_file" class="input drop-area">
+                    <img class="icon" src="../static/assets/icons/icon_file_binary.svg" alt="">
+                    <h4>Archivo binario</h4>
+                    <input type="file" name="file" id="file-binary" accept=".txt" style="display:none;">
+                </div>
+                <div id="input_decompression_codes" class="input drop-area">
+                    <img class="icon" src="../static/assets/icons/icon_table.svg" alt="">
+                    <h4>Tabla de codificacion</h4>
+                    <input type="file" name="file" id="file-codes" accept=".txt" style="display:none;">
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>
