@@ -13,6 +13,7 @@
 }
 
 body {
+    min-height: 100vh;
     margin: 0;
     box-sizing: border-box;
     font-family: var(--font);
@@ -20,7 +21,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: end;
-    height: 100vh;
     color: #fff;
 }
 
@@ -154,6 +154,11 @@ body {
     border-right: 1px solid #666666;
 }
 
+#input_compression {
+    width: 100%;
+    height: 100%;
+}
+
 #input_decompression_file,
 #input_decompression_codes {
     padding: 110px 0;
@@ -170,7 +175,7 @@ body {
 
 /* DRAG AND DROP */
 
-#section_compression.hover {
+#input_compression.hover {
     background-color: var(--orange);
 }
 
@@ -181,3 +186,22 @@ body {
 #input_decompression_codes.hover {
     background-color: var(--blue);
 }
+
+/* DE/COMPRESSION BUTTON */
+
+#btn_compression,
+#btn_decompression {
+    background-color: var(--bg-tab);
+    width: 100%;
+    border: none;
+    padding: 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: .7rem;
+    color: var(--text-secondary);
+    border-top: var(--border-primary);
+    cursor: pointer;
+}
+
+
+/* DECOMPRESSION BUTTON */
