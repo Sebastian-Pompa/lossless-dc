@@ -1,0 +1,26 @@
+<section id="section_compression">
+    <div id="input_compression" class="input drop-area">
+        <img class="icon" src="../static/assets/icons/icon_file_txt.svg" alt="">
+        <h4 id="caption_compress">Archivo de texto</h4>
+        <input type="file" name="file" id="file_txt" accept=".txt" style="display:none;">
+    </div>
+    <button id="btn_compression" type="submit">Comprimir</button>
+</section>
+
+<section id="section_decompression">
+    <div class="fields">
+        <div id="input_decompression_file" class="input drop-area drop-area-decompress">
+            <img class="icon" src="../static/assets/icons/icon_file_binary.svg" alt="">
+            <h4 id="caption_decompress_bin">Archivo binario</h4>
+            <input type="file" name="file" id="file_bin" accept=".bin" style="display:none;">
+        </div>
+
+        <div id="input_decompression_codes" class="input drop-area drop-area-decompress">
+            <img class="icon" src="../static/assets/icons/icon_table.svg" alt="">
+            <h4 id="caption_decompress_codes">Tabla de codificacion</h4>
+            <input type="file" name="file" id="file_codes" accept=".json" style="display:none;">
+        </div>
+    </div>
+
+    <button id="btn_decompression" type="submit">Descomprimir</button>
+</section>

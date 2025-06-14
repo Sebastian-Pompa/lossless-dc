@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+Resultados de la Compresión
+{% endblock %}
+
+{% block content %}
+<main id="main">
+    <!-- Contenido de la sección de Inicio -->
+    <div id="compress_details_content" class="content content_active">
+        <ul>
+            <li><strong>Tamaño Original:</strong> {{ data['original_size'] }}</li>
+            <li><strong>Tamaño Comprimido:</strong> {{ data['compressed_size'] }}</li>
+            <li><strong>Porcentaje de Compresión:</strong> {{ data['compression_percentage'] }}%</li>
+            <li><strong>Relación de Compresión:</strong> {{ data['compression_ratio'] }}</li>
+            <li><strong>Tiempo de Compresión:</strong> {{ data['compression_time'] }} segundos</li>
+            <li><strong>Número de Caracteres:</strong> {{ data['num_characters'] }}</li>
+            <li><strong>Número de Palabras:</strong> {{ data['num_words'] }}</li>
+            <li><strong>Método de Compresión:</strong> {{ data['compression_method'] }}</li>
+            <li><strong>Estado de la Compresión:</strong> {{ data['compression_status'] }}</li>
+            <li><strong>Archivos Generados:</strong> {{ data['generated_files'] }}</li>
+            <a href="{{ url_for('download', filename=filename) }}" download="compression.zip">Descargar archivo comprimido</a>
+        </ul>
+    </div>
+</main>
+{% endblock %}

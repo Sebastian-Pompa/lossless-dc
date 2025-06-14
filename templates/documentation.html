@@ -1,0 +1,113 @@
+<h1>Documentación</h1>
+<section class="section">
+    <h2>Uso del Algoritmo de Huffman en Lossless DC</h2>
+    <p>Lossless DC utiliza el algoritmo de Huffman como uno de los principales métodos para la compresión de datos. Este
+        algoritmo es fundamental para reducir el tamaño de los archivos sin perder ninguna información. Al aplicarlo, el
+        programa genera archivos comprimidos que mantienen la integridad de los datos, permitiendo tanto la compresión
+        como la descompresión de manera eficiente.</p>
+</section>
+
+<section class="section">
+    <h2>¿Qué es el Algoritmo de Huffman?</h2>
+    <p>El algoritmo de Huffman es un método de compresión sin pérdida utilizado para reducir el tamaño de los archivos.
+        Su principal ventaja es que permite almacenar información con el mínimo número de bits posible, sin perder
+        ningún dato. Fue desarrollado por David A. Huffman en 1952 y es ampliamente utilizado en aplicaciones como la
+        compresión de texto, imágenes y archivos.</p>
+</section>
+
+<section class="section">
+    <h2>Funcionamiento del Algoritmo</h2>
+    <p>El algoritmo de Huffman construye un árbol binario de decisión para representar los caracteres más frecuentes con
+        códigos de longitud más corta, y los menos frecuentes con códigos más largos. Esto se hace mediante los
+        siguientes pasos:</p>
+    <ol>
+        <li><strong>Contar la frecuencia de los caracteres</strong>: Se calcula la frecuencia de cada carácter en el
+            archivo de entrada.</li>
+        <li><strong>Construir el árbol de Huffman</strong>: Los caracteres con frecuencias más bajas se agrupan y se les
+            asignan los códigos más largos. Este proceso crea un árbol binario con cada nodo representando un carácter o
+            una combinación de caracteres.</li>
+        <li><strong>Asignar códigos binarios</strong>: A cada carácter se le asigna un código binario basado en su
+            posición en el árbol. Los caracteres más frecuentes tienen códigos más cortos.</li>
+        <li><strong>Generar el archivo comprimido</strong>: El archivo se codifica utilizando los códigos generados, lo
+            que da como resultado un archivo comprimido.</li>
+    </ol>
+</section>
+
+<section class="section">
+    <h2>Construcción del Árbol de Huffman</h2>
+    <p>El árbol de Huffman se construye a partir de los caracteres y sus frecuencias. El algoritmo comienza
+        seleccionando los dos caracteres con menor frecuencia y los combina en un nodo padre, cuya frecuencia es la suma
+        de las dos frecuencias anteriores. Este proceso se repite hasta que todos los caracteres estén representados en
+        el árbol.</p>
+    <p>La idea principal es asignar los códigos binarios más cortos a los caracteres más frecuentes y los más largos a
+        los menos frecuentes. El resultado es un árbol binario como el siguiente:</p>
+    <figure>
+        <img src="../static/assets/images/huffman_tree_example.png" alt="Ejemplo de Árbol de Huffman"
+            style="max-width: 100%; height: auto; margin-top: 15px;">
+        <figcaption>
+            Imagen de un árbol de Huffman tomada de
+            <a href="https://en.wikipedia.org/wiki/Huffman_coding" target="_blank">
+                Wikipedia - Huffman coding
+            </a>
+        </figcaption>
+    </figure>
+</section>
+
+<section class="section">
+    <h2>Ventajas del Algoritmo de Huffman</h2>
+    <ul>
+        <li><strong>Compresión eficiente:</strong> Huffman es muy eficiente para archivos con una distribución de
+            caracteres desbalanceada, es decir, cuando algunos caracteres ocurren mucho más que otros.</li>
+        <li><strong>Compresión sin pérdida:</strong> No hay pérdida de datos en el proceso, lo que significa que los
+            datos originales pueden recuperarse sin alteraciones.</li>
+        <li><strong>Simple de implementar:</strong> Aunque es un algoritmo complejo en su implementación, una vez
+            comprendido, es relativamente fácil de programar y aplicar.</li>
+    </ul>
+</section>
+
+<section class="section">
+    <h2>Desventajas del Algoritmo de Huffman</h2>
+    <ul>
+        <li><strong>Desempeño en archivos pequeños:</strong> En archivos muy pequeños, el algoritmo de Huffman puede no
+            ser tan eficiente, ya que el overhead de almacenar los códigos puede superar los beneficios de la
+            compresión.</li>
+        <li><strong>Requiere almacenamiento de frecuencias:</strong> Es necesario almacenar la tabla de frecuencias en
+            el archivo comprimido, lo que puede agregar un pequeño aumento al tamaño del archivo final.</li>
+    </ul>
+</section>
+
+<section class="section">
+    <h2>Aplicaciones del Algoritmo de Huffman</h2>
+    <p>El algoritmo de Huffman es ampliamente utilizado en diversos campos, tales como:</p>
+    <ul>
+        <li><strong>Compresión de texto:</strong> Utilizado en formatos de compresión como <code>.zip</code> y
+            <code>.gzip</code> para comprimir archivos de texto.
+        </li>
+        <li><strong>Compresión de imágenes:</strong> Formatos como <code>JPEG</code> utilizan variantes del algoritmo de
+            Huffman para comprimir imágenes sin pérdida de calidad.</li>
+        <li><strong>Codificación en transmisiones digitales:</strong> Es utilizado en estándares de transmisión de datos
+            y telecomunicaciones para reducir el uso de ancho de banda.</li>
+    </ul>
+</section>
+
+<section class="section">
+    <h2>Implementación del Algoritmo</h2>
+    <p>El algoritmo de Huffman se implementa en varios lenguajes de programación y existen numerosas bibliotecas que
+        facilitan su uso. A continuación, se muestra un pseudocódigo básico para la compresión y descompresión de datos:
+    </p>
+    <pre><code>
+# Pseudocódigo básico de Huffman
+1. Calcular la frecuencia de cada símbolo en el archivo
+2. Construir un árbol de Huffman a partir de las frecuencias
+3. Asignar códigos binarios a cada símbolo
+4. Codificar el archivo utilizando los códigos de Huffman
+            </code></pre>
+</section>
+
+<section class="section">
+    <h2>Conclusión</h2>
+    <p>El algoritmo de Huffman es un método eficiente de compresión sin pérdida que sigue siendo ampliamente utilizado
+        hoy en día. Su principal ventaja radica en su capacidad para reducir significativamente el tamaño de los
+        archivos sin sacrificar la calidad de los datos, lo que lo convierte en un pilar fundamental en el campo de la
+        compresión de datos.</p>
+</section>

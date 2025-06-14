@@ -2,13 +2,20 @@ const dropAreas = document.querySelectorAll('.drop-area');
 
 const fileInputs = document.querySelectorAll('input[type="file"]');
 
-const dropAreaCompression = document.getElementById('input_compression')
-const dropAreaDecompressionBin = document.getElementById('input_decompression_file')
-const dropAreaDecompressionCodes = document.getElementById('input_decompression_codes')
+const dropAreaCompression = document.getElementById('input_compression');
+const dropAreaDecompressionBin = document.getElementById('input_decompression_file');
+const dropAreaDecompressionCodes = document.getElementById('input_decompression_codes');
 
 //  Buttons
-const btn_compression = document.getElementById('btn_compression')
-const btn_decompression = document.getElementById('btn_decompression')
+const btnCompression = document.getElementById('btn_compression');
+const btnDecompression = document.getElementById('btn_decompression');
+
+//  Captions
+const captionCompress = document.getElementById('caption_compress');
+const captionDecompressBin = document.getElementById('caption_decompress_bin');
+const captionDecompressCodes = document.getElementById('caption_decompress_codes');
+
+
 
 let file_compression = null;
 let file_decompression_bin = null;
@@ -44,6 +51,9 @@ dropAreaCompression.addEventListener('drop', (event) => {
 
     if (file && file.name.endsWith('.txt')) {
         file_compression = file;
+        dropAreaCompression.classList.add('uploaded');
+        captionCompress.innerHTML = "archivo de texto cargado";
+        btnCompression.classList.add('active');
     } else {
         alert('Solo se permiten archivos .txt');
     }
@@ -56,6 +66,11 @@ dropAreaDecompressionBin.addEventListener('drop', (event) => {
 
     if (file && file.name.endsWith('.bin')) {
         file_decompression_bin = file;
+        dropAreaDecompressionBin.classList.add('uploaded');
+        captionDecompressBin.innerHTML = "archivo binario cargado";
+        if (file_decompression_bin && file_decompression_codes) {
+            btnDecompression.classList.add('active');
+        }
     } else {
         alert('Solo se permiten archivos .bin');
     }
@@ -68,6 +83,11 @@ dropAreaDecompressionCodes.addEventListener('drop', (event) => {
 
     if (file && file.name.endsWith('.json')) {
         file_decompression_codes = file;
+        dropAreaDecompressionCodes.classList.add('uploaded');
+        captionDecompressCodes.innerHTML = "tabla de codificacion cargada";
+        if (file_decompression_bin && file_decompression_codes) {
+            btnDecompression.classList.add('active');
+        }
     } else {
         alert('Solo se permiten archivos .json');
     }
@@ -75,7 +95,7 @@ dropAreaDecompressionCodes.addEventListener('drop', (event) => {
 
 // Cuando se pulsa en el boton de compresion
 // Envia el archivo al servidor para la compresion
-btn_compression.addEventListener('click', (event) => {
+btnCompression.addEventListener('click', (event) => {
     event.preventDefault();
 
     if (file_compression && file_compression.name.endsWith('.txt')) {
@@ -87,27 +107,12 @@ btn_compression.addEventListener('click', (event) => {
             body: formData
         })
             .then(response => {
-                if (response.ok) {
-                    // Si la respuesta es correcta, obtenemos el archivo como un blob
-                    return response.blob();
+                if (response.redirected) {
+                    // Redirige automáticamente a la página de resultados
+                    window.location.href = response.url;
                 } else {
                     throw new Error('Error al comprimir el archivo');
                 }
-            })
-            .then(blob => {
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-
-                a.href = url;
-                a.download = 'compressed.zip';
-
-                document.body.appendChild(a);
-
-                a.click();
-
-                document.body.removeChild(a);
-
-                window.URL.revokeObjectURL(url);
             })
             .catch(error => {
                 alert('Error al subir el archivo: ' + error.message);
@@ -119,7 +124,7 @@ btn_compression.addEventListener('click', (event) => {
 
 // Cuando se pulsa en el boton de compresion
 // Envia el archivo al servidor para la compresion
-btn_decompression.addEventListener('click', (event) => {
+btnDecompression.addEventListener('click', (event) => {
     event.preventDefault();
 
     if (
@@ -163,26 +168,6 @@ btn_decompression.addEventListener('click', (event) => {
         alert('Solo se permiten archivos .bin y .json');
     }
 });
-
-// UNUSED
-// Subir archivo usando AJAX
-function uploadFile(file, index) {
-    const formData = new FormData();
-    formData.append('file', file);
-
-    fetch('/upload', {
-        method: 'POST',
-        body: formData
-    })
-        .then(response => response.text())
-        .then(data => {
-            alert(data);
-            location.reload();  // Recargar la página para mostrar el archivo subido
-        })
-        .catch(error => {
-            alert('Error al subir el archivo.');
-        });
-}
 
 // Si un archivo es seleccionado desde el explorador de archivos, subirlo
 document.getElementById('file_txt').addEventListener('change', (event) => {

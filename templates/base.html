@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Lossless DC</title>
+</head>
+
+<body>
+
+    <div id="container">
+        <header id="header">
+            <div id="btns">
+                <div id="btn_close" class="btn"></div>
+                <div class="btn"></div>
+                <div class="btn"></div>
+            </div>
+            <h3 id="name">{% block title %} {% endblock %}</h3>
+            <a href="https://github.com/Sebastian-Pompa/lossless-dc" target="_blank">
+                <img id="icon_github" src="../static/assets/icons/icon_github.svg" alt="Icono de GitHub">
+            </a>
+        </header>
+
+        {% block content %}
+        {% endblock %}
+
+    </div>
+
+    <script src="{{ url_for('static', filename='js/window_buttons.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tabs.js') }}"></script>
+
+</body>
+
+</html>
