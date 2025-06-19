@@ -444,33 +444,25 @@ a {
 }
 
 
-/*  =================== COMPRESS DETALS ================= */
+/*  =================== COMPRESS SUMARY ================= */
 
-#compress_details_content {
+#compress_summary {
+    display: flex;
     flex-direction: column;
     font-family: var(--font);
     padding: 20px;
     margin: 20px;
     border-radius: 8px;
     background-color: #323232;
+    gap: 30px;
 }
 
-#compress_details_content ul {
-    list-style-type: none;
-    padding-left: 0;
-    font-size: 0.5rem;
-    line-height: 1.6;
-    color: #fff;
+#compress_summary .btns {
+    display: flex;
+    gap: 60px;
+    font-weight: bold;
 }
 
-#compress_details_content ul li {
-    margin-bottom: 30px;
-}
-
-#compress_details_content ul li strong {
-    color: #d9d9d9;
-}
-
-#compress_details_content ul li:last-child {
-    margin-bottom: 0;
+#compress_summary a {
+    color: var(--orange);
 }

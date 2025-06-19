@@ -30,22 +30,37 @@ def compress():
 
     compression = HuffmanAlgorithm(content)
 
-    session['compress_details'] = {
-        'original_size': len(content),
-        'compressed_size': len(compression.codedContent),
-        'compression_percentage': round(100 * (1 - len(compression.codedContent) / len(content)), 2) if len(content) > 0 else 0,
-        'compression_ratio': round(len(content) / len(compression.codedContent), 2) if len(compression.codedContent) > 0 else 0,
-        'compression_time': 0.1,  # ejemplo
-        'num_characters': len(content),
-        'num_words': len(content.split()),
-        'compression_method': 'Huffman',
-        'compression_status': 'Completado',
-        'generated_files': '.json y .bin'
-    }
-
     binary_file = io.BytesIO()
     binary_file.write(compression.codedContent.encode())
     binary_file.seek(0)
+
+    # Tamaño en bytes
+    file_size = len(content.encode('utf-8'))
+    binary_file_size = len(binary_file.read()) / 8.0
+
+    # Porcentaje de compresión
+    percentage = (file_size / binary_file_size) * 100.0
+
+    # Tamaños en MB
+    file_size_mb = file_size / (1024 ** 2)
+    binary_file_size_mb = binary_file_size / (1024 ** 2)
+
+    # Reiniciar los punteros de los archivos
+    file.seek(0)
+    binary_file.seek(0)
+
+    file.seek(0)
+    binary_file.seek(0)
+
+    # Guardar los resultados en la sesión
+    session['compress_summary'] = {
+        'original_size': file_size,
+        'original_size_mb': round(file_size_mb, 2),
+        'compressed_size': round(binary_file_size, 2),
+        'compressed_size_mb': round(binary_file_size_mb, 2),
+        'compression_percentage': round(percentage, 2),
+        'compression_method': 'Algoritmo de Huffman'
+    }
 
     json_data = json.dumps(compression.codes)
 
@@ -61,7 +76,7 @@ def compress():
         f.write(zip_buffer.read())
 
     # Guardamos detalles como parámetros temporales en URL (alternativa a session para datos no sensibles)
-    return redirect(url_for('compress_details', filename='compression.zip'))
+    return redirect(url_for('compress_summary', filename='compression.zip'))
 
 
 # Descomprimir
@@ -100,13 +115,13 @@ def decompress():
 
 
 # Mostrar detalles de compresión
-@app.route('/compress_details')
-def compress_details():
+@app.route('/compress_summary')
+def compress_summary():
     filename = request.args.get('filename')
 
-    details = session.get('compress_details', {})
+    details = session.get('compress_summary', {})
 
-    return render_template('compress_details.html', data=details, filename=filename)
+    return render_template('compress_summary.html', data=details, filename=filename)
 
 
 # Ruta para descargar ZIP

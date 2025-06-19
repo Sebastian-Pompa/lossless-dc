@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}
+Resumen de la Compresión
+{% endblock %}
+
+{% block content %}
+<main id="main">
+    <section id="compress_summary">
+        <p><strong>Tamaño Original (B):</strong> {{ data['original_size'] }} {{ 'byte' if data['original_size'] == 1 else 'bytes' }}</p>
+
+        {% if data['original_size_mb'] > 0 %}
+            <p><strong>Tamaño Original (MB):</strong> {{ data['original_size_mb'] }} {{ 'megabyte' if data['original_size_mb'] == 1 else 'megabytes' }}</p>
+        {% endif %}
+
+        <p><strong>Tamaño Comprimido (B):</strong> {{ data['compressed_size'] }} {{ 'byte' if data['compressed_size'] == 1 else 'bytes' }}</p>
+
+        {% if data['compressed_size_mb'] > 0 %}
+            <p><strong>Tamaño Comprimido (MB):</strong> {{ data['compressed_size_mb'] }} {{ 'megabyte' if data['original_size_mb'] == 1 else 'megabytes' }}</p>
+        {% endif %}
+
+        <p><strong>Reducción:</strong> {{ data['compression_percentage'] }}%</p>
+        <p><strong>Método:</strong> {{ data['compression_method'] }}</p>
+        <div class="btns">
+            <a href="{{ url_for('download', filename=filename) }}" id="download_btn" download="compression.zip">
+                Descargar archivo comprimido
+            </a>
+        </div>
+    </section>
+</main>
+{% endblock %}
