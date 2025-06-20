@@ -64,9 +64,6 @@ def compress():
     # Archivo con la tabla de codificación
     json_data = json.dumps(compression.codes)
 
-    rr = compression.root
-    rr.print_node()
-
     # Imagen del árbol de huffman
     img_tree_buffer = generate_img_huffman_tree(compression.root)
 
