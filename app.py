@@ -69,7 +69,7 @@ def compress():
 
     zip_buffer = io.BytesIO()
     with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zip_file:
-        zip_file.writestr(file.filename + '_compressed.bin', file.read())
+        zip_file.writestr(file.filename + '_compressed.bin', binary_file.read())
         zip_file.writestr(file.filename + '_codes.json', json_data.encode('utf-8'))
         zip_file.writestr(file.filename + '_huff_tree.svg', img_tree_buffer)
 
